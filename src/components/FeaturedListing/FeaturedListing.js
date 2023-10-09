@@ -13,7 +13,7 @@ import { CardActionArea } from '@mui/material';
 export default function FeaturedListing() {
     const [ listingData, setListiningData ] = useState([]);
 
-    async function fectchListning(){
+    async function fetchListing(){
         try {
             const res = await axios.get(`${config.backendPoint}/real-estate-data`);
             const data = res.data.listings;
@@ -28,7 +28,7 @@ export default function FeaturedListing() {
     }
 
     useEffect(() =>{
-        fectchListning();
+        fetchListing();
     }, [])
 
     return (
@@ -59,7 +59,7 @@ export default function FeaturedListing() {
                                     <CardActions>
                                         <div className='listing-details'>
                                             <span className='property-price'>Rs {element.price}</span>
-                                            <span className='property-city'>Rs {element.city.slice(0,5)}</span>
+                                            <span className='property-city'>{element.city.slice(0,7)}</span>
                                         </div>
                                     </CardActions>
                                 </CardActionArea>
