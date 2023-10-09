@@ -8,7 +8,7 @@ import ListingsTableView from '../ListingsTableView/ListingsTableView';
 
 export default function Explrore() {
 
-  const [listingData, setListingData] = useState();
+  const [listingData, setListingData] = useState([]);
   const [locationFilter, setLocationFilter] = useState([]);
   const [priceRange, setPriceRange] = useState([]);
   const [sortBy, setSortBy] = useState("");
@@ -24,16 +24,37 @@ export default function Explrore() {
 
   //Filter Handle
 
-  const handleLocationFilterChange = () =>{
-    console.log("Vishal")
+  const handleLocationFilterChange = (event) =>{
+    
+    const isChecked = event.target.checked;
+    if(isChecked){
+      // If checked then add to locationFilter
+      setLocationFilter((prevState) => [...prevState, event.target.value]);
+    }
+    else{
+      // If not checked then remove
+      setLocationFilter((prevState) => 
+        prevState.filter((item) => item !== event.target.value)
+      );
+    };
   }
 
-  const handlePriceRangeFilter =() =>{
+  const handlePriceRangeFilter =(event) =>{
+    const isChecked = event.target.checked;
 
+    if(isChecked){
+      setPriceRange((prevState) => [...prevState, event.target.value]);
+    }
+    else{
+      setPriceRange((prevState) => 
+        prevState.filter((item) => item !== event.target.value)
+      );
+    };
   }
 
-  const handleSortByChange=()=>{
-
+  const handleSortByChange=(event)=>{
+    // If dropdown is selected, the added to sort by state
+    setSortBy(event.target.value)
   }
 
   useEffect(() =>{
@@ -43,28 +64,26 @@ export default function Explrore() {
 
   return (
     <>
-        {/* Header */}
-        < Header/>
+      < Header/>
 
-        <div className='property-listing-view'>
-
-        </div>
-        {/* checkBoxFilter */}
-
+      <div className='property-listing-view'>
         <CheckBoxFilter  
           locationFilter = {locationFilter}
           priceRange = {priceRange}
           handleLocationFilterChange={handleLocationFilterChange}
           handlePriceRangeFilter = {handlePriceRangeFilter}
         />
-
-        {/* SortingFilters */}
-
-        <SortingFilter />
-
-        {/* ListingTableView */}
-
-        <ListingsTableView />
+        <SortingFilter 
+          sortBy = {sortBy}
+          handleSortByChange = {handleSortByChange}
+        />
+        <ListingsTableView 
+          listingData = {listingData}
+          priceRange = {priceRange}
+          locationFilter = {locationFilter}
+          sortBy = {sortBy}
+        />
+      </div>
     </>
   );
 }
