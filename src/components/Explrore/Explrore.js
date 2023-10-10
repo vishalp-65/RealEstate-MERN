@@ -5,6 +5,7 @@ import config from '../../config/config';
 import CheckBoxFilter from '../CheckBoxFilter/CheckBoxFilter';
 import SortingFilter from '../SortingFilter/SortingFilter';
 import ListingsTableView from '../ListingsTableView/ListingsTableView';
+import "./Explrore.css"
 
 export default function Explrore() {
 
@@ -64,7 +65,7 @@ export default function Explrore() {
 
   return (
     <>
-      < Header/>
+      < Header onPage="listings"/>
 
       <div className='property-listing-view'>
         <CheckBoxFilter  

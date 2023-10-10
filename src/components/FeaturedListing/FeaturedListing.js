@@ -9,9 +9,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 export default function FeaturedListing() {
     const [ listingData, setListiningData ] = useState([]);
+    const navigate = useNavigate();
 
     async function fetchListing(){
         try {
@@ -44,7 +46,7 @@ export default function FeaturedListing() {
                     listingData.map((element, index) => (
                         <Grid item xs = {12} sm = {6} md = {3}>
                             <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
+                                <CardActionArea onClick={() => navigate(`/detail/${element.property_id}`)}>
                                     <CardMedia
                                         component="img"
                                         height="140"

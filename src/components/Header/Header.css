@@ -27,3 +27,8 @@
     border: none;
     color: white;
 }
+
+.nav-list{
+    display: flex;
+    gap: 10px;
+}

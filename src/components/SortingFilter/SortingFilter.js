@@ -18,8 +18,7 @@ export default function SortingFilter({
       </h2>
 
       <Box className="dropdown" sx={{ minWidth: 120 }}>
-        <FormControl fullWidth size="small">
-        <InputLabel id="demo-simple-select-label">Select sorting</InputLabel>
+        <FormControl sx = {{width: "200px"}} size="small">
           <Select
             labelId="sorting-label"
             id="sorting-id"
